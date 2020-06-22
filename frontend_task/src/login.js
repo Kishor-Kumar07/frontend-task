@@ -35,18 +35,15 @@ class login extends Component {
   }
  onClick=(e)=>{
   e.preventDefault();
-  const list =this.state.list
-  list['sign']=true;
   this.setState({
-    list:list
+    sign:true
   })
-
  }
  validate(email,pass){
   const list=this.state.errors;
   console.log(this.state.list)
   const reg = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
-  if(this.state.list.lemail==''&&reg.test(this.state.list.lemail))
+  if(this.state.list.lemail==''&&!reg.test(this.state.list.lemail))
   {
     list['lemail']="Email Invalid"
   }
@@ -55,7 +52,7 @@ class login extends Component {
     list['lemail']=""
   }
     
-  if(this.state.list.lpassword==''&&this.state.list.lpassword.trim().length>6&&this.state.list.lpassword.trim().length<20)
+  if(this.state.list.lpassword==''&&!this.state.list.lpassword.trim().length>6&&!this.state.list.lpassword.trim().length<20)
   {
     list['lpassword']="Password Invalid"
   }
@@ -94,7 +91,7 @@ class login extends Component {
     };
   render()
 {
-  if(this.state.list.sign)
+  if(this.state.sign)
   {
     return(
       <Signup state={this.state}/>
@@ -112,10 +109,9 @@ class login extends Component {
   }
   else
   {
-    console.log(this.state.sign)
   return(
     <Card className="cardalign" style={{
-      position: 'absolute', left: '50%', top: '50%',
+      position: 'absolute',width:'50%', left: '50%', top: '50%',
       transform: 'translate(-50%, -50%)',
       color: 'white',height:'350px'}}>
     <Form onSubmit={(event) => { this.loginclick(event) }}>

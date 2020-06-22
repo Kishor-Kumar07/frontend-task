@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../Styles/contributors.css'
+import './contributors.css'
 import Loader from 'react-loading';
 import "animate.css/animate.min.css";
 import ScrollAnimation from 'react-animate-on-scroll';
@@ -42,18 +42,6 @@ class contributors extends Component {
   render() {
     return (
       <div>
-        <Card className="gradient">
-          <CardBody className="welcome-title" style={{
-                position: 'absolute', left: '50%', top: '50%',
-                transform: 'translate(-50%, -50%)',
-                color:'white'
-              }}>
-            <h5>Our beloved contributors <FontAwesomeIcon icon="heart" color="white"/> 
-            <br/>
-            Feel free to send your PR's to our repo</h5>
-          </CardBody>
-        </Card>
-
         {this.state.fetched ? (
           <div>
             <div className="container-fluid d-flex justify-content-center">
